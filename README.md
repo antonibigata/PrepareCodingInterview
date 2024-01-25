@@ -667,3 +667,195 @@ In interviews, problems are often described in a way that hints at the underlyin
 - **Practice Pattern Recognition**: Solve various problems to get familiar with common patterns and approaches.
 
 By practicing a wide range of problems, you'll start to recognize patterns and become more adept at choosing the appropriate method for solving different types of problems in coding interviews.
+
+# Additional Tips
+
+Here's a summary of the guidelines for tackling coding interview questions:
+
+1. **Understand the Question**:
+   - Repeat the question back to the interviewer to confirm your understanding.
+   - Always seek clarification, even if the question seems clear.
+
+2. **Ask Clarifying Questions**:
+   - Inquire about the size of the input, range of values, types of values (negative, floating-point), presence of duplicates, and extreme cases.
+   - Understand how the input is stored (e.g., list, trie).
+
+3. **Explain Your Approach**:
+   - Share your initial thoughts, even if they are naive.
+   - Discuss various approaches out loud and why they may or may not work.
+   - Start with a brute-force solution, explain its time and space complexities, and why it's not optimal.
+
+4. **Optimize Your Approach**:
+   - Look for repeated work and consider caching results to avoid redundant calculations.
+   - Wait for the interviewer's approval before starting to code.
+
+5. **Coding Style**:
+   - Write clear and readable code with meaningful variable names.
+   - Explain your code and logic as you write.
+   - Avoid large chunks of copied code; refactor if necessary.
+
+6. **Review Your Code**:
+   - Don't rush to declare completion. Review your code for bugs or syntax errors.
+   - Test your code with sample inputs and walk through it as if debugging.
+
+7. **Write Tests**:
+   - Proactively write tests for your code to catch bugs.
+   - Discuss the values of variables and the flow of the code.
+
+8. **Code Refactoring**:
+   - Restructure code to avoid duplication and improve quality.
+   - Consider short-circuit evaluation where applicable.
+
+9. **Discuss Complexities and Trade-offs**:
+   - Explain the time and space complexities of your solution.
+   - Discuss any trade-offs and alternative approaches.
+
+10. **Be Prepared for Extension Questions**:
+    - Be ready to answer follow-up questions, such as handling large inputs or stream processing.
+    - A common approach is to use divide-and-conquer and distributed processing.
+
+Following these steps will help demonstrate your problem-solving skills, attention to detail, and coding proficiency during an interview.
+
+Here's a summarized guide from the "Tech Interview Handbook" on techniques to approach and solve coding interview questions:
+
+### How to Find Solutions to Coding Interview Problems
+
+1. **Visualize the Problem**:
+   - Use diagrams to understand the internal state of a program, especially useful for trees, graphs, matrices, linked lists.
+
+2. **Solve the Problem by Hand**:
+   - Solve without coding, like how a non-programmer would. This can lead to a working solution that's a coded version of the manual approach.
+
+3. **Come Up with More Examples**:
+   - Reinforce understanding, prevent premature coding, identify patterns, and use as test cases for solution verification.
+
+4. **Break the Question Down**:
+   - Start with a high-level function and break it into smaller functions, solving each separately.
+
+5. **Apply Common Data Structures and Algorithms**:
+   - Use hash maps, graphs, stacks, queues, heaps, trees/tries, and routines like sorting, binary search, sliding window, two pointers, union find, BFS/DFS, topological sorting.
+
+### How to Optimize Your Approach or Solution
+
+#### Optimize Time Complexity
+
+1. **Identify the Best Theoretical Time Complexity (BTTC)**:
+   - Determine the fastest possible time complexity for the solution, and avoid trying to surpass it.
+
+2. **Identify Overlapping and Repeated Computation**:
+   - Reuse results from previous computations to avoid redundant work. Use dynamic programming and preprocessing steps.
+
+3. **Try Different Data Structures**:
+   - Choose data structures that optimize lookup times and efficiency. Consider hash tables for fast lookups.
+
+4. **Identify Redundant Work**:
+   - Minimize unnecessary checks, mind the order of checks, avoid invoking methods unnecessarily, leverage early termination, and minimize work inside loops.
+
+#### Optimize Space Complexity
+
+1. **Changing Data In-Place/Overwriting Input Data**:
+   - Consider overwriting values in the original input array to avoid allocating new space.
+
+2. **Change a Data Structure**:
+   - Reevaluate the choice of data structures to improve space efficiency.
+
+  Here's a summary of the "Coding Interview Cheatsheet" from the Tech Interview Handbook, focusing on best practices before, during, and after a coding interview:
+
+### Before the Coding Interview
+- **Dress Comfortably**: Casual attire is usually fine.
+- **Prepare Materials**: For virtual interviews, have pen, paper, earphones/headphones, a stable internet connection, and a functional webcam and audio setup. For phone screens, use earphones and consider using video call apps. For onsite whiteboarding, learn about whiteboard space management.
+- **Familiarize Yourself**: With the coding environment and set up shortcuts, turn off the webcam if not required.
+
+### During the Coding Interview
+1. **Self Introduction**:
+   - Keep it brief and enthusiastic, focusing on relevant experiences and skills.
+
+2. **Upon Receiving the Question**:
+   - Paraphrase and repeat the question for clarity.
+   - Ask clarifying questions about assumptions, input data, and possible edge cases.
+   - Work through a simplified example to confirm understanding.
+
+3. **Work Out and Optimize Your Approach**:
+   - Discuss multiple approaches and their trade-offs.
+   - Explain the time and space complexity of each approach.
+   - Agree on the most ideal approach with the interviewer before coding.
+
+4. **Coding Out the Solution**:
+   - Only start after discussing the approach.
+   - Talk through your coding process and compare different coding strategies.
+   - Write clean, straightforward, and neat code, using self-explanatory variable names.
+   - Write in a modular fashion, focusing on readability and efficiency.
+   - Check with the interviewer before using certain built-in functions.
+
+5. **After Coding**:
+   - Review your code for mistakes.
+   - Add and walk through test cases, especially edge cases.
+   - Refactor code if necessary and reiterate the complexities.
+   - Explain any trade-offs and potential improvements.
+
+6. **End of the Interview**:
+   - Ask thoughtful final questions related to the company or role.
+   - Thank the interviewer for their time.
+
+### After the Coding Interview
+- **Document Interview Questions and Answers**: Useful for future reference and practice.
+- **Follow Up**: Send a thank you email or LinkedIn message to your interviewer.
+
+### General Tips
+- **Prepare Thoroughly**: Understand the interview format and practice relevant problems.
+- **Stay Calm and Focused**: Clear communication and problem-solving skills are key.
+- **Reflect and Improve**: Learn from each interview experience to enhance your performance in future interviews.
+
+This cheatsheet provides a comprehensive guide to navigating the coding interview process, emphasizing preparation, clear communication, problem-solving strategies, and professional conduct.
+
+## Sliding window
+
+The sliding window technique is a method used to solve problems that involve arrays or lists of elements, particularly where the problem asks for something related to a contiguous subarray or sublist. This technique is especially useful when you need to track or compute something among all possible contiguous subarrays or sublists of a certain length.
+
+### Key Characteristics
+- Used to solve problems that require examining a contiguous sequence of elements in an array or list.
+- Efficient because it reduces the need for nested loops and thus lowers the time complexity.
+
+### How It Works
+1. **Initialize a Window**: Determine the initial position of the window (often at the start of the array).
+2. **Slide the Window**: Move the window across the array, typically by moving the start and end pointers, until it reaches the end.
+3. **Update Calculations**: At each step, update any necessary calculations or conditions based on the current window's contents.
+4. **Adjust Window Size**: Depending on the problem, the window may have a fixed size or a variable size.
+
+### Types of Sliding Window
+1. **Fixed-Size Window**: The size of the window remains constant as it slides. This type is often used when the problem specifies a subarray/sublist size.
+2. **Variable-Size Window**: The size of the window can grow or shrink based on certain conditions. This type is used in problems where the size of the subarray is not specified and depends on other conditions like a maximum sum or a distinct element count.
+
+### Example Problem: Maximum Sum Subarray of Size K
+Find the maximum sum of any contiguous subarray of size `k`.
+
+**Approach**:
+1. Use a sliding window of size `k`.
+2. Slide the window across the array while keeping track of the sum of elements in the current window.
+3. Update the maximum sum as the window slides.
+
+```python
+def max_sum_subarray(arr, k):
+    max_sum = 0
+    window_sum = sum(arr[:k])  # Initial window sum
+    max_sum = window_sum
+
+    for i in range(len(arr) - k):
+        window_sum = window_sum - arr[i] + arr[i + k]  # Slide the window
+        max_sum = max(max_sum, window_sum)
+
+    return max_sum
+
+# Example usage
+arr = [2, 3, 4, 1, 5]
+k = 3
+print(max_sum_subarray(arr, k))  # Output: 9 (subarray [3, 4, 1])
+```
+
+### Tips for Using Sliding Window Technique
+- Identify if the problem involves a subarray or sublist with contiguous elements.
+- Determine if the window size is fixed or variable.
+- Carefully think about how to update the calculations efficiently as the window slides.
+- Practice different types of problems to understand when and how to apply this technique effectively.
+
+The sliding window technique is powerful for optimizing solutions, particularly in reducing time complexity from O(n^2) to O(n) in many cases. It's a common technique in coding interviews for array and string manipulation problems.
