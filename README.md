@@ -97,79 +97,93 @@ In interviews, demonstrating an understanding of these concepts and being able t
 
 # Lookup/access
 
-  
 
-In Python, different types of objects have different typical time complexities for lookup and access operations. Here's a brief overview of the most common objects:
+# Time Complexity - Python Wiki
 
-  
+This page documents the time-complexity (aka "Big O" or "Big Oh") of various operations in current CPython. Other Python implementations (or older or still-under development versions of CPython) may have slightly different performance characteristics. However, it is generally safe to assume that they are not slower by more than a factor of O(log n). 
 
-### 1. Lists
+Generally, 'n' is the number of elements currently in the container. 'k' is either the value of a parameter or the number of elements in the parameter. 
 
-- **Access Time**: O(1)
+## list
 
-- Accessing an element in a list by index is a constant-time operation because lists in Python are implemented as dynamic arrays.
+The Average Case assumes parameters generated uniformly at random. 
 
-- **Search Time**: O(n)
+Internally, a list is represented as an array; the largest costs come from growing beyond the current allocation size (because everything must move), or from inserting or deleting somewhere near the beginning (because everything after that must move). If you need to add/remove at both ends, consider using a `collections.deque` instead. 
 
-- Searching for an element in a list (without knowing the index) requires iterating over the list, which takes linear time.
+| Operation          | Average Case | Amortized Worst Case |
+|--------------------|--------------|----------------------|
+| Copy               | O(n)         | O(n)                 |
+| Append[1]          | O(1)         | O(1)                 |
+| Pop last           | O(1)         | O(1)                 |
+| Pop intermediate[2]| O(n)         | O(n)                 |
+| Insert             | O(n)         | O(n)                 |
+| Get Item           | O(1)         | O(1)                 |
+| Set Item           | O(1)         | O(1)                 |
+| Delete Item        | O(n)         | O(n)                 |
+| Iteration          | O(n)         | O(n)                 |
+| Get Slice          | O(k)         | O(k)                 |
+| Del Slice          | O(n)         | O(n)                 |
+| Set Slice          | O(k+n)       | O(k+n)               |
+| Extend[1]          | O(k)         | O(k)                 |
+| Sort               | O(n log n)   | O(n log n)           |
+| Multiply           | O(nk)        | O(nk)                |
+| x in s             | O(n)         |                      |
+| min(s), max(s)     | O(n)         |                      |
+| Get Length         | O(1)         | O(1)                 |
 
-  
+## collections.deque
 
-### 2. Dictionaries
+A deque (double-ended queue) is represented internally as a doubly linked list. (Well, a list of arrays rather than objects, for greater efficiency.) Both ends are accessible, but even looking at the middle is slow, and adding to or removing from the middle is slower still. 
 
-- **Lookup Time**: O(1) average, O(n) worst-case
+| Operation   | Average Case | Amortized Worst Case |
+|-------------|--------------|----------------------|
+| Copy        | O(n)         | O(n)                 |
+| append      | O(1)         | O(1)                 |
+| appendleft  | O(1)         | O(1)                 |
+| pop         | O(1)         | O(1)                 |
+| popleft     | O(1)         | O(1)                 |
+| extend      | O(k)         | O(k)                 |
+| extendleft  | O(k)         | O(k)                 |
+| rotate      | O(k)         | O(k)                 |
+| remove      | O(n)         | O(n)                 |
+| Get Length  | O(1)         | O(1)                 |
 
-- Dictionary lookups (accessing a value by its key) are typically constant time because Python dictionaries are implemented as hash tables. However, in the worst-case scenario, such as when there are many hash collisions, the time complexity can degrade to O(n).
+## set
 
-- **Insertion/Update Time**: O(1) average, O(n) worst-case
+See dict -- the implementation is intentionally very similar. 
 
-- Similar to lookup, inserting or updating a value in a dictionary is usually constant time but can degrade in the worst case.
+| Operation                           | Average case              | Worst Case                |
+|-------------------------------------|---------------------------|---------------------------|
+| x in s                              | O(1)                      | O(n)                      |
+| Union s\|t                          | O(len(s)+len(t))          |                           |
+| Intersection s&t                    | O(min(len(s), len(t)))    | O(len(s) * len(t))        |
+| Multiple intersection s1&s2&..&sn   | (n-1)*O(l) where l is max(len(s1),..,len(sn)) |
+| Difference s-t                      | O(len(s))                 |                           |
+| s.difference_update(t)              | O(len(t))                 |                           |
+| Symmetric Difference s^t            | O(len(s))                 | O(len(s) * len(t))        |
+| s.symmetric_difference_update(t)    | O(len(t))                 | O(len(t) * len(s))        |
 
-  
+## dict
 
-### 3. Sets
+The Average Case times listed for dict objects assume that the hash function for the objects is sufficiently robust to make collisions uncommon. The Average Case assumes the keys used in parameters are selected uniformly at random from the set of all keys. 
 
-- **Lookup Time**: O(1) average, O(n) worst-case
+Note that there is a fast-path for dicts that (in practice) only deal with str keys; this doesn't affect the algorithmic complexity, but it can significantly affect the constant factors: how quickly a typical program finishes. 
 
-- Sets, like dictionaries, are implemented using hash tables, so the average time complexity for checking if an element is in a set is constant. However, it can degrade in the worst case.
+| Operation    | Average Case | Amortized Worst Case |
+|--------------|--------------|----------------------|
+| k in d       | O(1)         | O(n)                 |
+| Copy[3]      | O(n)         | O(n)                 |
+| Get Item     | O(1)         | O(n)                 |
+| Set Item[1]  | O(1)         | O(n)                 |
+| Delete Item  | O(1)         | O(n)                 |
+| Iteration[3] | O(n)         | O(n)                 |
 
-- **Insertion Time**: O(1) average, O(n) worst-case
+### Notes
+[1] These operations rely on the "Amortized" part of "Amortized Worst Case". Individual actions may take surprisingly long, depending on the history of the container. 
 
-- Adding elements to a set is typically a constant-time operation but can degrade.
+[2] Popping the intermediate element at index k from a list of size n shifts all elements after k by one slot to the left using memmove. n - k elements have to be moved, so the operation is O(n - k). The best case is popping the second to last element, which necessitates one move, the worst case is popping the first element, which involves n - 1 moves. The average case for an average value of k is popping the element the middle of the list, which takes O(n/2) = O(n) operations. 
 
-  
-
-### 4. Tuples
-
-- **Access Time**: O(1)
-
-- Accessing an element in a tuple by index is a constant-time operation, similar to lists.
-
-- **Search Time**: O(n)
-
-- Searching for an element in a tuple requires iterating over the tuple, taking linear time.
-
-  
-
-### 5. Strings
-
-- **Access Time**: O(1)
-
-- Accessing a character in a string by index is a constant-time operation.
-
-- **Search Time**: O(n)
-
-- Searching for a substring or a character in a string without knowing the position takes linear time.
-
-  
-
-### Notes:
-
-- The time complexities mentioned are typical and are based on average cases. Actual performance can vary depending on specific situations, such as the distribution of hash keys in dictionaries and sets.
-
-- Python's dynamic nature and high-level abstraction mean that these complexities are based on the underlying implementation, which is in C for CPython (the standard Python implementation).
-
-- Understanding these complexities is crucial for writing efficient Python code, especially when dealing with large datasets or performance-critical applications.
+[3] For these operations, the worst case n is the maximum size the container ever achieved, rather than just the current size. For example, if N objects are added to a dictionary, then N-1 are deleted, the dictionary will still be sized for N objects (at least) until another insertion is made. 
 
   
  # Trees and Graphs
