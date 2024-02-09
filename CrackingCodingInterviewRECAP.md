@@ -4,9 +4,6 @@
 # Big O
 
   
-
-Certainly! Let's dive deeper into each common Big O notation case to provide a clearer understanding:
-
   
 
 ### 1. O(1) - Constant Time
@@ -100,8 +97,6 @@ In interviews, demonstrating an understanding of these concepts and being able t
 
 # Time Complexity - Python Wiki
 
-This page documents the time-complexity (aka "Big O" or "Big Oh") of various operations in current CPython. Other Python implementations (or older or still-under development versions of CPython) may have slightly different performance characteristics. However, it is generally safe to assume that they are not slower by more than a factor of O(log n). 
-
 Generally, 'n' is the number of elements currently in the container. 'k' is either the value of a parameter or the number of elements in the parameter. 
 
 ## list
@@ -187,10 +182,6 @@ Note that there is a fast-path for dicts that (in practice) only deal with str k
 
   
  # Trees and Graphs
-
-  
-
-Certainly! Trees and graphs are fundamental data structures often discussed in coding interviews. Understanding these structures and their associated algorithms is crucial for solving many problems in computer science.
 
   
 
@@ -292,10 +283,6 @@ Trees and graphs are versatile structures used in many algorithmic problems, so 
 
   
 
-Sure, let's delve into more detail about Depth-First Search (DFS) and Breadth-First Search (BFS), two fundamental graph traversal algorithms, along with examples.
-
-  
-
 ### Depth-First Search (DFS)
 
 DFS is a traversal algorithm that explores as far as possible along each branch before backtracking. It's commonly used to explore the entire graph or to search for specific elements, paths, or properties within a graph.
@@ -391,10 +378,6 @@ Both DFS and BFS are essential for various problems in graph theory, and underst
   
 
 # Bit manipulation
-
-  
-
-Certainly! Bit manipulation is a key topic in computer science and software engineering, especially in the context of technical interviews. It involves working directly with bits, which are the most basic units of data in computing, represented as either 0 or 1. Bit manipulation operations are fast and efficient, making them important for optimizing code, solving certain types of problems, and understanding low-level data processing.
 
   
 
